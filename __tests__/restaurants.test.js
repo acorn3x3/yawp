@@ -117,10 +117,11 @@ describe('restaurant routes;', () => {
       Object {
         "detail": "It was okay",
         "id": "4",
-        "restaurant_id": null,
-        "stars": null,
+        "restaurant_id": "1",
+        "stars": 5,
         "user_id": "4",
       }
     `);
   });
+  //it('DELETE /api/v1/reviews/:id deletes a review by an admin or user who created the review', async () => {
 });
