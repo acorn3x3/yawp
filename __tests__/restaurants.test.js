@@ -128,7 +128,7 @@ describe('restaurant routes;', () => {
     await agent
       .post('/ap1/v1/restaurants/1/reviews')
       .send({ stars: 20, detail: 'wow, I live at this foodery now' });
-    const resp = await agent.delete('api/v1/reviews/4');
+    const resp = await agent.delete('/api/v1/reviews/4');
     expect(resp.status).toBe(204);
     const deleteResp = await agent.get('/api/v1/reviews/4');
     expect(deleteResp.status).toBe(404);
