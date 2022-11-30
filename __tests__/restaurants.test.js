@@ -20,7 +20,7 @@ describe('restaurant routes;', () => {
     pool.end();
   });
 
-  it.skip('GET /api/v1/restaurants shows a list of restaurants', async () => {
+  it('GET /api/v1/restaurants shows a list of restaurants', async () => {
     const resp = await request(app).get('/api/v1/restaurants');
     expect(resp.status).toBe(200);
     expect(resp.body).toMatchInlineSnapshot(`
@@ -60,7 +60,7 @@ describe('restaurant routes;', () => {
           ]
       `);
   });
-  it.skip('GET /api/v1/restaurants/:restID shows restaurant detail', async () => {
+  it('GET /api/v1/restaurants/:restID shows restaurant detail', async () => {
     const resp = await request(app).get('/api/v1/restaurants/1');
     expect(resp.status).toBe(200);
     expect(resp.body).toMatchInlineSnapshot(`
@@ -107,7 +107,7 @@ describe('restaurant routes;', () => {
       .send({ email: mockUser.email, password: mockUser.password });
     return [agent, user];
   };
-  it.skip('POST /api/v1/restaurants/reviews/:id creates a new review with a user who is logged in', async () => {
+  it('POST /api/v1/restaurants/reviews/:id creates a new review with a user who is logged in', async () => {
     const [agent] = await registerAndLogin();
     const resp = await agent
       .post('/api/v1/restaurants/1/reviews')
