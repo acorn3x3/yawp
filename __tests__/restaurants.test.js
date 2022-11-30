@@ -107,7 +107,7 @@ describe('restaurant routes;', () => {
       .send({ email: mockUser.email, password: mockUser.password });
     return [agent, user];
   };
-  it('POST /api/v1/restaurants/reviews/:id creates a new review with a user who is logged in', async () => {
+  it.skip('POST /api/v1/restaurants/reviews/:id creates a new review with a user who is logged in', async () => {
     const [agent] = await registerAndLogin();
     const resp = await agent
       .post('/api/v1/restaurants/1/reviews')
@@ -123,5 +123,14 @@ describe('restaurant routes;', () => {
       }
     `);
   });
-  //it('DELETE /api/v1/reviews/:id deletes a review by an admin or user who created the review', async () => {
+  it('DELETE /api/v1/reviews/:id should delete the review if request is made by reviewer or admin', async () => {
+    const [agent] = await registerAndLogin();
+    await agent
+      .post('/ap1/v1/restaurants/1/reviews')
+      .send({ stars: 20, detail: 'wow, I live at this foodery now' });
+    const resp = await agent.delete('api/v1/reviews/4');
+    expect(resp.status).toBe(204);
+    const deleteResp = await agent.get('/api/v1/reviews/4');
+    expect(deleteResp.status).toBe(404);
+  });
 });
